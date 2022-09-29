@@ -22,7 +22,7 @@ class WebRouter:
         return router
 
     def add_static(self):
-        static_files = walk_directories("static")
+        static_files = walk_directories(self.static_location)
         if static_files:
             for directory in static_files.keys():
                 for file in static_files[directory]:
