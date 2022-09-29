@@ -1,7 +1,7 @@
-from picowebrouter.objects.request import Request
+from lib.picowebrouter.objects.request import Request
 import socket
 import uos as os
-from utils import walk_directories
+from lib.picowebrouter.utils import walk_directories
 
 
 class WebRouter:
@@ -57,10 +57,11 @@ class WebRouter:
                 if path in self.routes.keys():
                     webpage = self.routes[path](request=request)
                 elif path in self.static_files:
-                    with open(f"{self.static_location}/{path}", "rb") as static:
+                    with open(path, "rb") as static:
                         webpage = static.read()
                 else:
                     webpage = self.routes["default"](request=request)
                 header += f"Content-Type: {mimetype}\n\n"
                 client.sendall(webpage)
                 client.close()
+
