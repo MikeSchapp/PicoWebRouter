@@ -26,3 +26,18 @@ def recursive_walk(initial_directory):
             else:
                 files.append(item[0])
     return (directories, files)
+
+def unquote(string):
+    bytes_string = string.encode("utf-8")
+    split_byte_string = bytes_string.split(b'%')
+    if len(split_byte_string) == 1:
+        return bytes_string
+    final_byte_string = [split_byte_string[0]]
+    for split in split_byte_string[1:]:
+        try:
+            final_byte_string.append(bytes([int(split[:2], 16)]))
+            final_byte_string.append(split[2:])
+        except KeyError:
+            final_byte_string.append(b'%')
+            final_byte_string.append(split)
+    return b"".join(final_byte_string)

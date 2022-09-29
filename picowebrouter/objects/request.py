@@ -1,4 +1,4 @@
-
+from ..utils import unquote
 class Request:
     def __init__(self, request):
         self.raw = request
@@ -24,7 +24,7 @@ class Request:
             raw_query = raw_query.split("&")
             for query in raw_query:
                 key, value = query.split("=")
-                query_strings[key] = value
+                query_strings[key] = unquote(value).decode("utf-8")
             self.query_strings = query_strings
 
         headers = {}
