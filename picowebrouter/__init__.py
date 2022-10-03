@@ -13,6 +13,7 @@ class WebRouter:
         self.add_static()
 
     def route(self, path):
+        print(path)
         def router(function):
             def wrapper(*args, **kwargs):
                 self.routes[path] = function
@@ -45,7 +46,7 @@ class WebRouter:
             mimetype = "text/css"
         return mimetype
 
-    def serve(self):
+    def serve(self): # pragma: no cover
         while True:
             client = self.socket.accept()[0]
             request = client.recv(1024)

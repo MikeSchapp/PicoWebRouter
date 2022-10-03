@@ -6,7 +6,7 @@ with open("README.MD", "r") as long_description_file_reader:
 
 setup(
     name='micropython-picowebrouter',
-    version="v0.1.2",
+    version="v0.1.3",
     description="Pi Pico webserver",
     long_description=long_description,
     long_description_content_type='text/markdown',
