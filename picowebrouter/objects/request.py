@@ -1,4 +1,4 @@
-from ..utils import unquote
+from picowebrouter.utils import unquote
 class Request:
     def __init__(self,
         raw=None,
@@ -22,7 +22,7 @@ class Request:
     def parse_request(cls, request):
         body = None
         try:
-            request, body = request
+            request, body = request.split("\r\n\r\n")
         except ValueError:
             request = request
         split_request = request.split("\r\n")

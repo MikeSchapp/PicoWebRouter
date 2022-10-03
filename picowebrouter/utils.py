@@ -1,7 +1,7 @@
 import uos as os
 
 
-def walk_directories(initial_directory="/"):
+def walk_directories(initial_directory="/"): # pragma: no cover
     if not initial_directory.startswith("/"):
         initial_directory = f"/{initial_directory}"
     directories = [initial_directory]
@@ -13,7 +13,7 @@ def walk_directories(initial_directory="/"):
             directories = new_directories
     return paths
 
-def recursive_walk(initial_directory):
+def recursive_walk(initial_directory): # pragma: no cover
     files = []
     directories = []
     unprocessed_directory = os.ilistdir(initial_directory)
@@ -34,10 +34,6 @@ def unquote(string):
         return bytes_string
     final_byte_string = [split_byte_string[0]]
     for split in split_byte_string[1:]:
-        try:
-            final_byte_string.append(bytes([int(split[:2], 16)]))
-            final_byte_string.append(split[2:])
-        except KeyError:
-            final_byte_string.append(b'%')
-            final_byte_string.append(split)
+        final_byte_string.append(bytes([int(split[:2], 16)]))
+        final_byte_string.append(split[2:])
     return b"".join(final_byte_string)
