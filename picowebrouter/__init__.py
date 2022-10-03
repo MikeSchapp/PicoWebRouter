@@ -50,7 +50,7 @@ class WebRouter:
             client = self.socket.accept()[0]
             request = client.recv(1024)
             if request:
-                request = Request(request.decode("utf-8"))
+                request = Request.parse_request(request.decode("utf-8"))
                 path = request.path
                 header = "HTTP/1.1 200 OK\n"
                 mimetype = self.determine_mimetype(path)
